@@ -8,6 +8,7 @@ const URLS = {
 const HTMLIDS = {
     botton1: "btn-1",
     botton2: "btn-2",    
+    container: "container"
 }
 
 const isMobile = {
@@ -30,11 +31,11 @@ const getInteractiveVideo = () => {
     } 
 
     const addVideoButton = (buttonId, text, onClick) => {
-        const container = document.getElementById("container");
+        const container = document.getElementById(HTMLIDS.container);
         const button = document.createElement("BUTTON");
         button.setAttribute("id", buttonId);
         button.setAttribute("class", "button");
-        onClick && button.addEventListener("click", onClick);
+        button.addEventListener("click", onClick);
         button.innerHTML = text;
         container.appendChild(button);
     }
@@ -79,7 +80,7 @@ const getInteractiveVideo = () => {
         addVideoButton(HTMLIDS.button2, "Download now", onBottonClick);
     }
 
-    const onVideoPlay = () => {
+    const onVideoPlayed = () => {
         if (video.hasAttribute("controls")) {
             video.removeAttribute("controls");
         }   
@@ -106,7 +107,7 @@ const getInteractiveVideo = () => {
     }
 
     const run = () => {
-        video.addEventListener("play", onVideoPlay);
+        video.addEventListener("play", onVideoPlayed);
         video.addEventListener("ended", onVideoEnded);
         video.addEventListener("timeupdate", onTimeUpdate);
     }
