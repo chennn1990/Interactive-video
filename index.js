@@ -17,6 +17,12 @@ const isMobile = {
     other: () => !isMobile.Android() && !isMobile.iOS()
 };
 
+
+const openInNewTab = (url) => {
+    const win = window.open(url, '_blank');
+    win.focus();
+}
+
 const getInteractiveVideo = () => {
     let button1Presented;
     let button2Presented;
@@ -62,16 +68,11 @@ const getInteractiveVideo = () => {
         }, 10000);
     }
 
-    const openInNewTab = (url) => {
-        const win = window.open(url, '_blank');
-        win.focus();
-    }
-
     const addSecondButton = () => {
         const onBottonClick = () => {
             if (isMobile.Android()) {
                 openInNewTab(URLS.androidUrl);
-            } else if (isMobile.Android()) {
+            } else if (isMobile.iOS()) {
                 openInNewTab(URLS.iOSUrl);
             } else {
                 console.log("This device is not Android or iOS");
